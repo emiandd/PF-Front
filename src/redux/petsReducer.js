@@ -1,4 +1,4 @@
-import { organizations } from '../constants/organizations/organizations'
+import { foundations } from '../constants/organizations/spanishOrganizations'
 
 import {
 	RESET_PET_DETAIL,
@@ -89,7 +89,7 @@ export default function petsReducer(state = initialState, action) {
 			}
 		case GET_PET_DETAIL_FAV:
 			return {
-				...state, 
+				...state,
 				petDetailFav: action.payload
 			}
 
@@ -185,11 +185,10 @@ export default function petsReducer(state = initialState, action) {
 		case SHELTER_FILTER:
 
 			const petsIteratedByShelter = state.filterActive[0] === "Refugios" ? state.petsAvailables : state.petsFiltered
-			const [shelterId] = organizations.filter(e => e.name === action.payload)
 
 			return {
 				...state,
-				petsFiltered: petsIteratedByShelter.filter(e => e.organization_id === shelterId.id),
+				petsFiltered: petsIteratedByShelter.filter(e => e.contact.name === action.payload),
 				filterActive: state.filterActive.filter(e => e === 'Refugios').length < 1 ? [...state.filterActive, 'Refugios'] : state.filterActive,
 				filterDisplayed: state.filterActive[0] === "Refugios" ? [action.payload] : [...state.filterDisplayed, action.payload]
 			}
