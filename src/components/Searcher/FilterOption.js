@@ -19,7 +19,9 @@ const FilterOption = ({ type, options, SetFiltersAmount, filtersAmount }) => {
   const dispatch = useDispatch()
 
   const onClickHandler = (e) => {
+    window.scrollTo({ top: 300, behavior: 'smooth' })
 
+    
     switch (type) {
       case 'Raza':
         e.target.value.length && dispatch(breedFilter(e.target.value))
